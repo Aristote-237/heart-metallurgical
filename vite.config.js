@@ -7,7 +7,7 @@ export default defineConfig({
     includeAssets: ['favicon.png'],
     workbox: { skipWaiting: true, clientsClaim: true, cleanupOutdatedCaches: true,
       navigateFallback: '/index.html',
-      globPatterns: ['**/*.{js,css,html,png,webp,svg}'] },
+      globPatterns: ['**/*.{js,css,html,png,jpg,jpeg,webp,svg}'] },
     manifest: { name: 'Heart Metallurgical Construction — HMC SARL', short_name: 'HMC SARL',
       description: 'BTP, travaux métalliques et finitions à Yaoundé.', lang: 'fr',
       theme_color: '#0d1220', background_color: '#0d1220', display: 'standalone', start_url: '/',

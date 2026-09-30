@@ -92,6 +92,7 @@ function Home() {
   return (<>
     <Hero />
     <section className="wrap sec"><h2>{t.aboutT}</h2><p className="lead">{t.aboutP}</p></section>
+    <TeamPreview />
     <section className="wrap sec"><h2>{t.actT}</h2><p className="sub">{t.actS}</p><Cards /></section>
     <section className="wrap sec"><h2>{t.realT}</h2><Gallery items={allPhotos.slice(0, 6)} /><Link className="btn ghost" to="/realisations">{t.c2}</Link></section>
     <HmaBand />
@@ -104,6 +105,30 @@ function HmaBand() {
     <img src="/assets/logo-hma.png" alt="HMC Academy" width="150" height="150" />
     <div><h2>{t.hmaT}</h2><p>{t.hmaP}</p><Link className="btn" to="/hma">{t.hma}</Link></div>
   </div></section>)
+}
+
+function TeamPreview() {
+  const { t } = useApp()
+  return <section className="wrap sec team-preview">
+    <div><h2>{t.teamT}</h2><p className="lead">{t.teamP}</p><Link className="btn ghost" to="/a-propos">{t.teamLink}</Link></div>
+    <img src="/assets/IMG-20260930-WA0077.jpg" alt={t.teamAltGroup} loading="lazy" />
+  </section>
+}
+
+function TeamGallery() {
+  const { t } = useApp()
+  const photos = [
+    { src: '/assets/IMG-20260930-WA0077.jpg', alt: t.teamAltGroup },
+    { src: '/assets/IMG-20260930-WA0076.jpg', alt: t.teamAltSite },
+    { src: '/assets/IMG-20260930-WA0075.jpg', alt: t.teamAltMember }
+  ]
+  return <section className="team-gallery" aria-labelledby="team-heading">
+    <h2 id="team-heading">{t.teamT}</h2>
+    <p className="sub">{t.teamP}</p>
+    <div className="team-grid">{photos.map(photo => <figure className="team-photo" key={photo.src}>
+      <img src={photo.src} alt={photo.alt} loading="lazy" />
+    </figure>)}</div>
+  </section>
 }
 
 function Activity() {
@@ -171,7 +196,7 @@ export default function App() {
   return (<Ctx.Provider value={v}><Header /><main>
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/a-propos" element={<Page title={t.aboutT}><p className="lead">{t.aboutP}</p></Page>} />
+      <Route path="/a-propos" element={<Page title={t.aboutT}><p className="lead">{t.aboutP}</p><TeamGallery /></Page>} />
       <Route path="/activites" element={<Page title={t.actT} sub={t.actS}><Cards /></Page>} />
       <Route path="/activites/:slug" element={<Activity />} />
       <Route path="/realisations" element={<Page title={t.realT} sub={t.realS}><Gallery items={allPhotos} /></Page>} />
